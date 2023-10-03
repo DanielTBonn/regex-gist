@@ -6,7 +6,7 @@ Regex is an important search tool that programmers can use to help identify patt
 
 Briefly summarize the regex you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
 
-
+Regular expressions, or regex, actually comes from the mathematical concept of regular sets. 
 
 ## Table of Contents
 
