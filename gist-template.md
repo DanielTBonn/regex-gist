@@ -1,6 +1,7 @@
 # Title (replace with your title)
 
-To help understand regex and possibly pass on my knowledge to other new programmers trying to make sense of these cryptic patterns, I have set out to explain what each component does and why it is used. 
+To help understand regex and possibly pass on my knowledge to other new programmers trying to make sense of these cryptic patterns, I have set out to explain what it's components do. To do this, I will use a specific example 
+and relay what every individual part of the expression does and what the results will be for different expressions. 
 
 ## Summary
 
