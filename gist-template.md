@@ -1,7 +1,6 @@
 # Title (replace with your title)
 
-To help understand regex and possibly pass on my knowledge to other new programmers trying to make sense of these cryptic patterns, I have set out to explain what it's components do. To do this, I will use a specific example 
-and relay what every individual part of the expression does and what the results will be for different expressions. 
+Regex is an important search tool that programmers can use to help identify patterns that arise in strings or text. To those of us who are newer to programming it can look like indigestable gibberish only the greatest minds can hope to comprehend. However, after taking some time to learn the patterns it actually is quite simple and can become a powerful tool in our programming toolkit. To help understand regex and possibly pass on my knowledge to other new programmers trying to make sense of these cryptic patterns, I have set out to explain what it's components do. To do this, I will use a specific example and relay what every individual part of the expression does and what the results will be for different expressions. 
 
 ## Summary
 
