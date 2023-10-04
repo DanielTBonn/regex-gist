@@ -24,7 +24,7 @@ Regular expressions, or regex, actually comes from the mathematical concept of r
 
 ## Regex Components
 
-
+A regex is considered a literal, so in javascript the pattern must be wrapped in slash characters `/`.
 
 ### Anchors
 
@@ -36,6 +36,8 @@ Sets the limit of the string our regex matches, includes min and max number of c
 Are inherently greedy, meaning they match as many of occurences of particular patterns as possible.
 
 ### OR Operator
+
+Like with the bracket operators, the OR operator can match expressions such as `[abc]` in the same manner using `(a|b|c)`
 
 ### Character Classes
 
