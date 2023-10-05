@@ -57,8 +57,6 @@ Like with the bracket operators, the OR operator can match expressions such as `
 
 ### Character Classes
 
-
-
 There are quite a few character classes that can comprise regex expressions. They usually follow the same pattern however, starting with a `\` and followed by a letter. In our case we find two different character classes nested within two different grouping constructs (or in this case a group of characters within a set of parentheses `()`) of our expression. 
 
 - `\d` part of the grouping construct `([\da-z\.-]+)`
@@ -66,15 +64,16 @@ There are quite a few character classes that can comprise regex expressions. The
 
 These two character classes define a set of characters, any of which can occur in an input string to fulfill a match. The first one `\d` matches any arabic numeral digit between `[0-9]`. So for any integer expression, such as `86` or `75309`, the regex will match.  
 
-The second character class `\w` matches any alphanumeric character from the basic latin alphabet, including the underscore, and is equal to `[A-Za-z0-9_]`.
+The second character class `\w` matches any alphanumeric character from the basic latin alphabet, including the underscore, and is equal to `[A-Za-z0-9_]`. So for any expression that doesn't include special characters, spaces, or non-latin alphabet characters, we will find a match. For example `abc_321` matches, but `-#@%\. ` will not.
 
+In addition to these two character classes, I have provided information on two more below.
 
-* `\d` -- matches any arabic numeral digit. Equal to [0-9]
-* `\w` -- matches any alphanumeric character from the basic latin alphabet, including the underscore. Equal to [A-Za-z0-9_]
+* `.` -- matches any character except the newline `\n`
 * `\s` -- matches a single whitespace character, including tabs and line breaks
-* `.` -- matches any character except the newline \n
+* `\d` -- matches any arabic numeral digit. Equal to `[0-9]`
+* `\w` -- matches any alphanumeric character from the basic latin alphabet, including the underscore. Equal to `[A-Za-z0-9_]`
 
-Inverse matches can be performed by using the capital letter, see \D matching non-digit characters.
+For the last three classes above, inverse matches can be performed by using their capital letter. The character class `\D` will then match non-digit characters.
 
 ### Flags
 
