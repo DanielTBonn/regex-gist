@@ -66,6 +66,12 @@ A character class defines a set of characters, any of which can occur in an inpu
 
 Inverse matches can be performed by using the capital letter, see \D matching non-digit characters.
 
+There are quite a few character classes that can comprise regex expressions. They all follow the same pattern however, starting with a `\` and followed by a letter. In our case we find two different character classes nested within two different grouping constructs (for now, a group of characters within a set of parentheses `()`) of our expression. 
+
+- `\d` part of the grouping construct `([\da-z\.-]+)`
+- `\w` part of the grouping construct `([\/\w \.-]*)`
+
+
 ### Flags
 
 Outside of the literal between slashes, we can place a flag like so -- `/literal/g`. The flag defines additional functionality or limits to our regex. You can use the 6 flags together or seperately for your purposes, the 3 most common ones are as follows: 
@@ -84,6 +90,8 @@ Sub expressions look for an exact match, meaning the expression `abc:xyz` will m
 
 Grouping constructs have two categories, `capturing` and `non-capturing`. The important thing to know for now is that capturing groups capture the matched character sequences for possible re-use (including a numbered backreferences) while non-capturing groups do not. A grouping construct can be made non-capturing by adding the characters ?: at the beginning of an expression inside the parentheses. 
 
+A grouping construct is used to break up sections of a string to determine if they match what type of expression you are looking for. The primary way to make them are by using parentheses `()`.
+
 ### Bracket Expressions
 
 A bracket expression, or positive character group (outlines characters we want included), is anything inside a set of brackets `[]` representing a range of characters that we want to match. [abc] matches any string that includes an a, b, or c, and hyphens `-` are used between alphanumeric characters (letters/numbers) to represent a possible range. Therefore [abc] = [a-c]. Bracket expressions typically follow forms such as:
@@ -99,12 +107,12 @@ Note we can create a negative character group, or a bracket expression that excl
 Greedy matching will find as many occurrences of a particular pattern as possible. Quantifiers are inherently greedy, and include:
 
 * `*` -- matches the pattern zero or more times
-* + -- Matches the pattern one ore more times
-* ? -- Matches the pattern zero or one time
-* {} -- Curly brackets can provide three different ways to set limits for a match:
-    - { n } -- Matches EXACTLY n number of times
-    - { n, } -- Matches AT LEAST n number of times
-    - { n, x } -- Matches a minimum of n and maximum of x nubmer of times
+* `+` -- Matches the pattern one ore more times
+* `?` -- Matches the pattern zero or one time
+* `{}` -- Curly brackets can provide three different ways to set limits for a match:
+    - `{ n }` -- Matches EXACTLY n number of times
+    - `{ n, }` -- Matches AT LEAST n number of times
+    - `{ n, x }` -- Matches a minimum of n and maximum of x nubmer of times
 
 These quantifiers can be made lazy by adding the ? symbol after it, meaning it will match as few occurrences as possible.
 
