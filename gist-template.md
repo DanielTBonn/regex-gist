@@ -4,9 +4,9 @@ Regex is an important search tool that programmers can use to help identify patt
 
 ## Summary
 
-Briefly summarize the regex you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
+Today we will be studying a regex that matches a URL. The different components that make up this regular expression is as follows:
 
-Regular expressions, or regex, actually comes from the mathematical concept of regular sets. 
+`/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
 
 ## Table of Contents
 
@@ -24,11 +24,15 @@ Regular expressions, or regex, actually comes from the mathematical concept of r
 
 ## Regex Components
 
-A regex is considered a literal, so in javascript the pattern must be wrapped in slash characters `/`.
+A regex is considered a literal, so in javascript the pattern must be wrapped in slash characters `/`. For characters that may be interpreted literally as a regex component, we use the backslash `\` before it. For instance, as we will see with the next example, problems may arise if we wanted to use the forward slash `/`, to combat this and allow for it in our regex, we simply need to include the backslash before it `\/`. Other examples we will see later on are looking for a period `.` by using `\.`, or perhaps a 
 
 ### Anchors
 
 ^ and $ are 'anchored' to the front and back of the regex respectively
+
+First, lets turn our attention to the two symbols at the front and end of our regex respectively, the `^` and `$`. These two symbols are known as anchors, and their purpose is anchoring the regex component that immediately follows to the front or back of the expression we are looking for respectively. 
+
+In our case, if we take a look at the `^` which is an anchor for the front of our expression, we can see it anchors the regex component inside the parentheses `(https?:\/\/)`. Without going into detail on the `?` component, we can at least make a guess that it will look for the phrase `https://`. When web browsing, we can see that this (or similaryly `http://`) is always going to be at the front of our website url, making it essential to searching for in our regex. 
 
 ### Quantifiers
 
