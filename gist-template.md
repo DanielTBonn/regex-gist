@@ -8,6 +8,10 @@ Today we will be studying a regex that matches a URL. The different components t
 
 `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
 
+
+
+https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial
+
 ## Table of Contents
 
 - [Anchors](#anchors)
@@ -28,16 +32,24 @@ A regex is considered a literal, so in javascript the pattern must be wrapped in
 
 ### Anchors
 
-^ and $ are 'anchored' to the front and back of the regex respectively
-
 First, lets turn our attention to the two symbols at the front and end of our regex respectively, the `^` and `$`. These two symbols are known as anchors, and their purpose is anchoring the regex component that immediately follows to the front or back of the expression we are looking for respectively. 
 
-In our case, if we take a look at the `^` which is an anchor for the front of our expression, we can see it anchors the regex component inside the parentheses `(https?:\/\/)`. Without going into detail on the `?` component, we can at least make a guess that it will look for the phrase `https://`. When web browsing, we can see that this (or similaryly `http://`) is always going to be at the front of our website url, making it essential to searching for in our regex. 
+In our case, if we take a look at the `^` which is an anchor for the front of our expression, we can see it anchors the regex component inside the parentheses `(https?:\/\/)`. We will look at the `?` in more detail later, but all you need to know is that it matches something 0 or at most 1 times, so we see the phrase `https://`. When web browsing, we can see that this (or similarly `http://`) is always going to be at the front of our website url, making it essential to searching for in our regex. 
+
+For the `$` anchor tag, which anchors the end of our expression with whatever should be placed at the end, we find the expression `\/?$`. Recalling what we learned about the `\` and `?` components, we can see that the `$` anchor is simply looking for 0 or at most 1 forward slash at the end of the expression `/`. 
 
 ### Quantifiers
 
 Sets the limit of the string our regex matches, includes min and max number of characters that our regex is looking for.
 Are inherently greedy, meaning they match as many of occurences of particular patterns as possible.
+
+A quantifier is used to set the exact number, lower limit, or the min and max number of times we want to see a certain regular expression. It uses 2 squigly brackets followed by the pattern you desire, it will look something like this:
+
+- { n } -- Matches EXACTLY n number of times
+- { n, } -- Matches AT LEAST n number of times
+- { n, x } -- Matches a minimum of n and maximum of x nubmer of times
+
+In our regex we find one component that matches a quantifier, `{2,6}`. The entire expression that our quantifier executes on is `([a-z\.]{2,6})`, a bracket expression contained inside the same parentheses as our quantifier. Bracket expressions are used for ranges of characters, therefore any lowercase english letter aswell as a period `\.` will be match our expression.  Due to it's placement it seems to want to match any expression that could be a to be a top level domain, or in other words something along the lines of .com, .org, .io, etc.
 
 ### OR Operator
 
