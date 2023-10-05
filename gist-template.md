@@ -40,7 +40,7 @@ For the `$` anchor tag, which anchors the end of our expression with whatever sh
 
 ### Quantifiers
 
-Sets the limit of the string our regex matches, includes min and max number of characters that our regex is looking for.
+Sets the limit of the string our regex matches, includes min and max number of characters that our regex is looking for.\(\[\\da-z\\\.-\]\+\)
 Are inherently greedy, meaning they match as many of occurences of particular patterns as possible.
 
 A quantifier is used to set the exact number, lower limit, or the min and max number of times we want to see a certain regular expression. It uses 2 squigly brackets followed by the pattern you desire, it will look something like this:
@@ -57,20 +57,24 @@ Like with the bracket operators, the OR operator can match expressions such as `
 
 ### Character Classes
 
-A character class defines a set of characters, any of which can occur in an input string to fulfill a match. An example of this is the brackets we have already seen, but more are:
 
-* . -- matches any character except the newline \n
-* \d -- matches any arabic numeral digit. Equal to [0-9]
-* \w -- matches any alphanumeric character from the basic latin alphabet, including the underscore. Equal to [A-Za-z0-9_]
-* \s -- matches a single whitespace character, including tabs and line breaks
 
-Inverse matches can be performed by using the capital letter, see \D matching non-digit characters.
-
-There are quite a few character classes that can comprise regex expressions. They all follow the same pattern however, starting with a `\` and followed by a letter. In our case we find two different character classes nested within two different grouping constructs (for now, a group of characters within a set of parentheses `()`) of our expression. 
+There are quite a few character classes that can comprise regex expressions. They usually follow the same pattern however, starting with a `\` and followed by a letter. In our case we find two different character classes nested within two different grouping constructs (or in this case a group of characters within a set of parentheses `()`) of our expression. 
 
 - `\d` part of the grouping construct `([\da-z\.-]+)`
 - `\w` part of the grouping construct `([\/\w \.-]*)`
 
+These two character classes define a set of characters, any of which can occur in an input string to fulfill a match. The first one `\d` matches any arabic numeral digit between `[0-9]`. So for any integer expression, such as `86` or `75309`, the regex will match.  
+
+The second character class `\w` matches any alphanumeric character from the basic latin alphabet, including the underscore, and is equal to `[A-Za-z0-9_]`.
+
+
+* `\d` -- matches any arabic numeral digit. Equal to [0-9]
+* `\w` -- matches any alphanumeric character from the basic latin alphabet, including the underscore. Equal to [A-Za-z0-9_]
+* `\s` -- matches a single whitespace character, including tabs and line breaks
+* `.` -- matches any character except the newline \n
+
+Inverse matches can be performed by using the capital letter, see \D matching non-digit characters.
 
 ### Flags
 
