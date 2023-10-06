@@ -40,7 +40,7 @@ For the `$` anchor tag, which anchors the end of our expression with whatever sh
 
 ### Quantifiers
 
-Sets the limit of the string our regex matches, includes min and max number of characters that our regex is looking for.
+Sets the limit of the string our regex matches, includes min and max number of characters that our regex is looking for.\(\[\\da-z\\\.-\]\+\)
 Are inherently greedy, meaning they match as many of occurences of particular patterns as possible.
 
 A quantifier is used to set the exact number, lower limit, or the min and max number of times we want to see a certain regular expression. It uses 2 squigly brackets followed by the pattern you desire, it will look something like this:
@@ -57,14 +57,23 @@ Like with the bracket operators, the OR operator can match expressions such as `
 
 ### Character Classes
 
-A character class defines a set of characters, any of which can occur in an input string to fulfill a match. An example of this is the brackets we have already seen, but more are:
+There are quite a few character classes that can comprise regex expressions. They usually follow the same pattern however, starting with a `\` and followed by a letter. In our case we find two different character classes nested within two different grouping constructs (or in this case a group of characters within a set of parentheses `()`) of our expression. 
 
-* . -- matches any character except the newline \n
-* \d -- matches any arabic numeral digit. Equal to [0-9]
-* \w -- matches any alphanumeric character from the basic latin alphabet, including the underscore. Equal to [A-Za-z0-9_]
-* \s -- matches a single whitespace character, including tabs and line breaks
+- `\d` part of the grouping construct `([\da-z\.-]+)`
+- `\w` part of the grouping construct `([\/\w \.-]*)`
 
-Inverse matches can be performed by using the capital letter, see \D matching non-digit characters.
+These two character classes define a set of characters, any of which can occur in an input string to fulfill a match. The first one `\d` matches any arabic numeral digit between `[0-9]`. So for any integer expression, such as `86` or `75309`, the regex will match.  
+
+The second character class `\w` matches any alphanumeric character from the basic latin alphabet, including the underscore, and is equal to `[A-Za-z0-9_]`. So for any expression that doesn't include special characters, spaces, or non-latin alphabet characters, we will find a match. For example `abc_321` matches, but `-#@%\. ` will not.
+
+In addition to these two character classes, I have provided information on two more below.
+
+* `.` -- matches any character except the newline `\n`
+* `\s` -- matches a single whitespace character, including tabs and line breaks
+* `\d` -- matches any arabic numeral digit. Equal to `[0-9]`
+* `\w` -- matches any alphanumeric character from the basic latin alphabet, including the underscore. Equal to `[A-Za-z0-9_]`
+
+For the last three classes above, inverse matches can be performed by using their capital letter. The character class `\D` will then match non-digit characters.
 
 ### Flags
 
@@ -84,6 +93,8 @@ Sub expressions look for an exact match, meaning the expression `abc:xyz` will m
 
 Grouping constructs have two categories, `capturing` and `non-capturing`. The important thing to know for now is that capturing groups capture the matched character sequences for possible re-use (including a numbered backreferences) while non-capturing groups do not. A grouping construct can be made non-capturing by adding the characters ?: at the beginning of an expression inside the parentheses. 
 
+A grouping construct is used to break up sections of a string to determine if they match what type of expression you are looking for. The primary way to make them are by using parentheses `()`.
+
 ### Bracket Expressions
 
 A bracket expression, or positive character group (outlines characters we want included), is anything inside a set of brackets `[]` representing a range of characters that we want to match. [abc] matches any string that includes an a, b, or c, and hyphens `-` are used between alphanumeric characters (letters/numbers) to represent a possible range. Therefore [abc] = [a-c]. Bracket expressions typically follow forms such as:
@@ -99,12 +110,12 @@ Note we can create a negative character group, or a bracket expression that excl
 Greedy matching will find as many occurrences of a particular pattern as possible. Quantifiers are inherently greedy, and include:
 
 * `*` -- matches the pattern zero or more times
-* + -- Matches the pattern one ore more times
-* ? -- Matches the pattern zero or one time
-* {} -- Curly brackets can provide three different ways to set limits for a match:
-    - { n } -- Matches EXACTLY n number of times
-    - { n, } -- Matches AT LEAST n number of times
-    - { n, x } -- Matches a minimum of n and maximum of x nubmer of times
+* `+` -- Matches the pattern one ore more times
+* `?` -- Matches the pattern zero or one time
+* `{}` -- Curly brackets can provide three different ways to set limits for a match:
+    - `{ n }` -- Matches EXACTLY n number of times
+    - `{ n, }` -- Matches AT LEAST n number of times
+    - `{ n, x }` -- Matches a minimum of n and maximum of x nubmer of times
 
 These quantifiers can be made lazy by adding the ? symbol after it, meaning it will match as few occurrences as possible.
 
