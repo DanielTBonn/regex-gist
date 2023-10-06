@@ -84,6 +84,8 @@ Outside of the literal between slashes, we can place a flag like so -- `/literal
 
 ### Grouping and Capturing
 
+Before we jump in, you should know that grouping constructs have two categories, capturing and non-capturing. The important thing to know for now is that capturing groups capture the matched character sequences for possible re-use (including a numbered backreferences) while non-capturing groups do not. A grouping construct can be made non-capturing by adding the characters ?: at the beginning of an expression inside the parentheses.
+
 Grouping constructs are performed by using parenthesis `()` to create sections known as subexpressions. They allow us to break up our regex into subexpressions that determine if a string matches what we are looking for. As you can see in our example, we have 4 different grouping constructs looking for 4 different expressions in every string:
 
 `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
