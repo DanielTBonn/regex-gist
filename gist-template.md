@@ -8,8 +8,6 @@ Today we will be studying a regex that matches a URL. The different components t
 
 `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
 
-
-
 https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial
 
 ## Table of Contents
@@ -40,8 +38,7 @@ For the `$` anchor tag, which anchors the end of our expression with whatever sh
 
 ### Quantifiers
 
-Sets the limit of the string our regex matches, includes min and max number of characters that our regex is looking for.\(\[\\da-z\\\.-\]\+\)
-Are inherently greedy, meaning they match as many of occurences of particular patterns as possible.
+Sets the limit of the string our regex matches, includes min and max number of characters that our regex is looking for. Quantifiers are inherently greedy, meaning they match as many of occurences of particular patterns as possible.
 
 A quantifier is used to set the exact number, lower limit, or the min and max number of times we want to see a certain regular expression. It uses 2 squigly brackets followed by the pattern you desire, it will look something like this:
 
@@ -61,6 +58,8 @@ There are quite a few character classes that can comprise regex expressions. The
 
 - `\d` part of the grouping construct `([\da-z\.-]+)`
 - `\w` part of the grouping construct `([\/\w \.-]*)`
+
+https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial
 
 These two character classes define a set of characters, any of which can occur in an input string to fulfill a match. The first one `\d` matches any arabic numeral digit between `[0-9]`. So for any integer expression, such as `86` or `75309`, the regex will match.  
 
@@ -85,32 +84,49 @@ Outside of the literal between slashes, we can place a flag like so -- `/literal
 
 ### Grouping and Capturing
 
-Grouping constructs are performed by using parenthesis `()` to create sections known as subexpressions. The following is two subexpressions: 
+Before we jump in, you should know that grouping constructs have two categories, capturing and non-capturing. The important thing to know for now is that capturing groups capture the matched character sequences for possible re-use (including a numbered backreferences) while non-capturing groups do not. A grouping construct can be made non-capturing by adding the characters ?: at the beginning of an expression inside the parentheses.
 
-`(abc):(xyz)`. 
+Grouping constructs are performed by using parenthesis `()` to create sections known as subexpressions. They allow us to break up our regex into subexpressions that determine if a string matches what we are looking for. It is important to note that these are different than bracket expressions, because subexpressions look for an exact match unless they're told to do otherwise. As you can see in our example, we have 4 different grouping constructs looking for 4 different expressions in every string:
 
-Sub expressions look for an exact match, meaning the expression `abc:xyz` will match, but `acb:xyz` will not unless told to do otherwise.
+`/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
 
-Grouping constructs have two categories, `capturing` and `non-capturing`. The important thing to know for now is that capturing groups capture the matched character sequences for possible re-use (including a numbered backreferences) while non-capturing groups do not. A grouping construct can be made non-capturing by adding the characters ?: at the beginning of an expression inside the parentheses. 
+Which is comprised of:
 
-A grouping construct is used to break up sections of a string to determine if they match what type of expression you are looking for. The primary way to make them are by using parentheses `()`.
+- `(https?:\/\/)`
+- `([\da-z\.-]+)`
+- `([a-z\.]{2,6})`
+- `([\/\w \.-]*)`
+
+We have already discussed some of the regex components within the grouping constructs above, so now we can go over how we can use group capturing to restrict our search. 
+
+For our first expression `(https?:\/\/)`, we have already guessed that `(https?:\/\/)` will match a value of `https://` or `http://`. No other values will match for our initial subexpression. 
+
+Our second expression `([\da-z\.-]+)` matches digits, lowercase characters, a period and a dash. As you can see, this expression can match many different things, and with the addtion of the greedy quantifier `+` symbol, it is required to match at least once ore more times. That means the strings it can match are quite long. The important thing to notice is that it includes a backslash period `\.`, meaning if there are any periods anywhere within the expression it will still count as valid like we would want for something following the URL format `example.website`. This makes the expression very flexible in searching for the subdomain and second-level domain (note the top-level domain is actually left off such as `.com`).
+
+Our third expression is `([a-z\.]{2,6})` which is one we have already seen. It searches for a wide variety of expressions containing lowercase letters and/or a period, but set by a quantifier range of `{2,6}` that. Many things could be searched for using this, including a top-level domain such as `.com`, `.org`, `.io`.  
+
+Our final expression is `([\/\w \.-]*)` which casts a wide net for many different expressions. It includes a bracket expression that can match a forwardslash `\/`, alphanumeric characters `\w`, a period `\.`, and a dash `-`. Using another greedy quantifier it can match things 0 or more times due to the `*`. This matches many different routes following the main url following the form `/route/example/for-gist`.
+
+As we can see we broke up essential parts of a url into subexpressions that we can use to verify a url. Each expression covers their own section making it easier to create a regex that can verify something that may be complicated.
 
 ### Bracket Expressions
 
-A bracket expression, or positive character group (outlines characters we want included), is anything inside a set of brackets `[]` representing a range of characters that we want to match. [abc] matches any string that includes an a, b, or c, and hyphens `-` are used between alphanumeric characters (letters/numbers) to represent a possible range. Therefore [abc] = [a-c]. Bracket expressions typically follow forms such as:
+A bracket expression, or positive character group (outlines characters we want included), is anything inside a set of brackets `[]` representing a range of characters that we want to match. `[abc]` matches any string that includes an a, b, or c, and hyphens `-` are used between alphanumeric characters (letters/numbers) to represent a possible range. Therefore `[abc]` = `[a-c]`. Bracket expressions typically follow forms such as:
 
-* [a-z] -- Contains any lowercase letter between a-z. For uppercase characters we must use [A-Z]
-* [0-9] -- Contains numbers between 0-9
-* [_-] -- Contains any special character that matches the _ and -, note that the hyphen `-` is different than the range hyphen above since it doesn't follow an alphanumeric character. 
+* `[a-z]` -- Contains any lowercase letter between a-z. For uppercase characters we must use `[A-Z]`
+* `[0-9]` -- Contains numbers between 0-9
+* `[_-]` -- Contains any special character that matches the _ and -, note that the hyphen `-` is different than the range hyphen above since it doesn't follow an alphanumeric character. 
 
-Note we can create a negative character group, or a bracket expression that excludes any character of a certain pattern, but including a carrot `^` inside the bracket expression at the beginning. Therefor the expression [^aeiouAEIOU] looks for any string that does NOT contain a vowel.
+Note we can create a negative character group, or a bracket expression that excludes any character of a certain pattern, but including a carrot `^` inside the bracket expression at the beginning. Therefor the expression `[^aeiouAEIOU]` looks for any string that does NOT contain a vowel.
+
+The bracket expressions within our regex are whatever character classes or literals we choose to match placed inside of a two brackets `[]`. Bracket expressions match all characters that they include, meaning `[abc]` matches any a, b, or c character regardless of the length of the string (see `abracadabra` and `abaccaba`). For this example, we'll take a closer look at the bracket expression `[\da-z\.-]` in our regex.
 
 ### Greedy and Lazy Match
 
 Greedy matching will find as many occurrences of a particular pattern as possible. Quantifiers are inherently greedy, and include:
 
 * `*` -- matches the pattern zero or more times
-* `+` -- Matches the pattern one ore more times
+* `+` -- Matches the pattern one or more times
 * `?` -- Matches the pattern zero or one time
 * `{}` -- Curly brackets can provide three different ways to set limits for a match:
     - `{ n }` -- Matches EXACTLY n number of times
