@@ -119,7 +119,7 @@ A bracket expression, or positive character group (outlines characters we want i
 
 Note we can create a negative character group, or a bracket expression that excludes any character of a certain pattern, but including a carrot `^` inside the bracket expression at the beginning. Therefor the expression `[^aeiouAEIOU]` looks for any string that does NOT contain a vowel.
 
-The bracket expressions within our regex are whatever character classes or literals we choose to match placed inside of a two brackets `[]`. We already have plenty of experience with bracket expressions within our regex
+The bracket expressions within our regex are whatever character classes or literals we choose to match placed inside of a two brackets `[]`. Bracket expressions match all characters that they include, meaning `[abc]` matches any a, b, or c character regardless of the length of the string (see `abracadabra` and `abaccaba`). For this example, we'll take a closer look at the bracket expression `[\da-z\.-]` in our regex.
 
 ### Greedy and Lazy Match
 
