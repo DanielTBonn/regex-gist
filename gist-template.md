@@ -86,7 +86,7 @@ Outside of the literal between slashes, we can place a flag like so -- `/literal
 
 Before we jump in, you should know that grouping constructs have two categories, capturing and non-capturing. The important thing to know for now is that capturing groups capture the matched character sequences for possible re-use (including a numbered backreferences) while non-capturing groups do not. A grouping construct can be made non-capturing by adding the characters ?: at the beginning of an expression inside the parentheses.
 
-Grouping constructs are performed by using parenthesis `()` to create sections known as subexpressions. They allow us to break up our regex into subexpressions that determine if a string matches what we are looking for. As you can see in our example, we have 4 different grouping constructs looking for 4 different expressions in every string:
+Grouping constructs are performed by using parenthesis `()` to create sections known as subexpressions. They allow us to break up our regex into subexpressions that determine if a string matches what we are looking for. It is important to note that these are different than bracket expressions, because subexpressions look for an exact match unless they're told to do otherwise. As you can see in our example, we have 4 different grouping constructs looking for 4 different expressions in every string:
 
 `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
 
@@ -118,6 +118,8 @@ A bracket expression, or positive character group (outlines characters we want i
 * `[_-]` -- Contains any special character that matches the _ and -, note that the hyphen `-` is different than the range hyphen above since it doesn't follow an alphanumeric character. 
 
 Note we can create a negative character group, or a bracket expression that excludes any character of a certain pattern, but including a carrot `^` inside the bracket expression at the beginning. Therefor the expression `[^aeiouAEIOU]` looks for any string that does NOT contain a vowel.
+
+The bracket expressions within our regex are whatever character classes or literals we choose to match placed inside of a two brackets `[]`. We already have plenty of experience with bracket expressions within our regex
 
 ### Greedy and Lazy Match
 
