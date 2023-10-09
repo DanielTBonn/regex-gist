@@ -110,7 +110,11 @@ These quantifiers can be made lazy by adding the `?` symbol after it, meaning it
 
 In our regex we see all four of these methods being used. Since we have already talked about the squigly brackets `{}` regarding quantifiers, we will turn our attention to the `*`, `+`, and `?` symbols.
 
-In our first grouping construct, we see a subexpression looking to match the scheme of a url, `(https?:\/\/)?`. Since the question mark `?` seeks to match 0 or 1 times, we can safely match both secure and insecure http protocols `https` or `http` respectively. Because the grouping construct ends with a quesiton mark as well, the http protocol does not need to be included for us to match a valid URL. In addition to those two instances of `?`, we see one more at the end of our entire regex trying to match a forward slash `\/?` one or more times.
+In our first grouping construct, we see a subexpression looking to perform a lazy match for the scheme of a url, `(https?:\/\/)?`. Since the question mark `?` seeks to match 0 or 1 times, we can safely match both secure and insecure http protocols `https` or `http` respectively. Because the grouping construct ends with a quesiton mark as well, the http protocol does not need to be included for us to match a valid URL. In addition to those two instances of `?`, we see one more at the end of our entire regex trying to match a forward slash `\/?` one or more times.
+
+In our second grouping construct `([\da-z\.-]+)` we find the greedy matching symbol `+`. Because it requires an expression to match at least 1 time, the bracket expression it is modifying has to be matched, and can be quite long or short since there is not an upper limit to match.
+
+
 
 
 
