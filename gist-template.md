@@ -128,4 +128,6 @@ Our regex hasn't covered some important or more advanced topics when it comes to
 
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+Daniel Bonn is a physics graduate from UT pursuing a career in web development. He has taken on course work from the UT Austin full stack bootcamp and is steadily growing his skills as a web developer.
+
+https://github.com/DanielTBonn
