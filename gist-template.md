@@ -119,7 +119,10 @@ A bracket expression, or positive character group (outlines characters we want i
 
 Note we can create a negative character group, or a bracket expression that excludes any character of a certain pattern, but including a carrot `^` inside the bracket expression at the beginning. Therefor the expression `[^aeiouAEIOU]` looks for any string that does NOT contain a vowel.
 
-The bracket expressions within our regex are whatever character classes or literals we choose to match placed inside of a two brackets `[]`. Bracket expressions match all characters that they include, meaning `[abc]` matches any a, b, or c character regardless of the length of the string (see `abracadabra` and `abaccaba`). For this example, we'll take a closer look at the bracket expression `[\da-z\.-]` in our regex.
+The bracket expressions within our regex are whatever character classes or literals we choose to match placed inside of a two brackets `[]`. Bracket expressions match all characters that they include, meaning `[abc]` matches any a, b, or c character regardless of the length of the string (see `abracadabra` and `abaccaba`). 
+
+For this example, we'll take a closer look at the bracket expression `[\da-z\.-]` in our regex. As you can see it matches digits, lowercase characters, a period and a dash. This is a very flexible expression that will be used to match any character in a valid subdomain and second level domain due to the inclusion of the period with the `\.`. For example `blogpost.website-123.` will match this expression which is exactly the form we are looking for when matching the first two portions of our url following the scheme (`https://`)
+
 
 ### Greedy and Lazy Match
 
