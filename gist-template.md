@@ -8,8 +8,6 @@ Today we will be studying a regex that matches a URL. The different components t
 
 `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
 
-https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial
-
 ## Table of Contents
 
 - [Anchors](#anchors)
@@ -107,11 +105,21 @@ Greedy matching will find as many occurrences of a particular pattern as possibl
 * `+` -- Matches the pattern one or more times
 * `?` -- Matches the pattern zero or one time
 * `{}` -- Curly brackets can provide three different ways to set limits for a match:
-    - `{ n }` -- Matches EXACTLY n number of times
-    - `{ n, }` -- Matches AT LEAST n number of times
-    - `{ n, x }` -- Matches a minimum of n and maximum of x nubmer of times
 
-These quantifiers can be made lazy by adding the ? symbol after it, meaning it will match as few occurrences as possible.
+These quantifiers can be made lazy by adding the `?` symbol after it, meaning it will match as few occurrences as possible.
+
+In our regex we see all four of these methods being used. Since we have already talked about the squigly brackets `{}` regarding quantifiers, we will turn our attention to the `*`, `+`, and `?` symbols.
+
+In our first grouping construct, we see a subexpression looking to match the scheme of a url, `(https?:\/\/)?`. Since the question mark `?` seeks to match 0 or 1 times, we can safely match both secure and insecure http protocols `https` or `http` respectively. Because the grouping construct ends with a quesiton mark as well, the http protocol does not need to be included for us to match a valid URL. In addition to those two instances of `?`, we see one more at the end of our entire regex trying to match a forward slash `\/?` one or more times.
+
+
+
+
+
+
+
+`/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
+
 
 ### Extra Topics
 
