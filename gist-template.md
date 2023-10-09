@@ -14,15 +14,11 @@ https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial
 
 - [Anchors](#anchors)
 - [Quantifiers](#quantifiers)
-- [OR Operator](#or-operator)
 - [Character Classes](#character-classes)
-- [Flags](#flags)
 - [Grouping and Capturing](#grouping-and-capturing)
 - [Bracket Expressions](#bracket-expressions)
 - [Greedy and Lazy Match](#greedy-and-lazy-match)
-- [Boundaries](#boundaries)
-- [Back-references](#back-references)
-- [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+- [Extra Topics](#extra-topics)
 
 ## Regex Components
 
@@ -48,18 +44,12 @@ A quantifier is used to set the exact number, lower limit, or the min and max nu
 
 In our regex we find one component that matches a quantifier, `{2,6}`. The entire expression that our quantifier executes on is `([a-z\.]{2,6})`, a bracket expression contained inside the same parentheses as our quantifier. Bracket expressions are used for ranges of characters, therefore any lowercase english letter aswell as a period `\.` will be match our expression.  Due to it's placement it seems to want to match any expression that could be a to be a top level domain, or in other words something along the lines of .com, .org, .io, etc.
 
-### OR Operator
-
-Like with the bracket operators, the OR operator can match expressions such as `[abc]` in the same manner using `(a|b|c)`
-
 ### Character Classes
 
 There are quite a few character classes that can comprise regex expressions. They usually follow the same pattern however, starting with a `\` and followed by a letter. In our case we find two different character classes nested within two different grouping constructs (or in this case a group of characters within a set of parentheses `()`) of our expression. 
 
 - `\d` part of the grouping construct `([\da-z\.-]+)`
 - `\w` part of the grouping construct `([\/\w \.-]*)`
-
-https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial
 
 These two character classes define a set of characters, any of which can occur in an input string to fulfill a match. The first one `\d` matches any arabic numeral digit between `[0-9]`. So for any integer expression, such as `86` or `75309`, the regex will match.  
 
@@ -73,14 +63,6 @@ In addition to these two character classes, I have provided information on two m
 * `\w` -- matches any alphanumeric character from the basic latin alphabet, including the underscore. Equal to `[A-Za-z0-9_]`
 
 For the last three classes above, inverse matches can be performed by using their capital letter. The character class `\D` will then match non-digit characters.
-
-### Flags
-
-Outside of the literal between slashes, we can place a flag like so -- `/literal/g`. The flag defines additional functionality or limits to our regex. You can use the 6 flags together or seperately for your purposes, the 3 most common ones are as follows: 
-
-* g -- Global search: the regex should be tested against all possible matches in a string.
-* i -- Case-sensitive search: case should be ignored while attempting a match in a string.
-* m -- Multi-line search: a multi-line input string should be treated as multiple lines
 
 ### Grouping and Capturing
 
@@ -131,11 +113,15 @@ Greedy matching will find as many occurrences of a particular pattern as possibl
 
 These quantifiers can be made lazy by adding the ? symbol after it, meaning it will match as few occurrences as possible.
 
-### Boundaries
+### Extra Topics
 
-### Back-references
+Our regex hasn't covered some important or more advanced topics when it comes to using regular expressions. You may want to do some extra research to learn about these powerful tools that can help you match expressions more cleanly.
 
-### Look-ahead and Look-behind
+- OR operator
+- Flags
+- Boundaries
+- Back-references
+- Look-ahead and Look-behind
 
 ## Author
 
